@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Text Character Counter - Count characters, words, sentences instantly">
+    <title>Text Character Counter - Free Online Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .tool-area {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        textarea {
+            width: 100%;
+            height: 250px;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: vertical;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+            font-family: Arial, sans-serif;
+        }
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+            transition: transform 0.2s;
+        }
+        .stat-box:hover {
+            transform: translateY(-2px);
+        }
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+        .btn-warning {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            color: #2c3e50;
+        }
+        
+        /* Popup Notification Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .popup h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .popup p {
+            margin-bottom: 25px;
+            color: #7f8c8d;
+        }
+        .popup-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .popup-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .popup-btn.confirm {
+            background: #27ae60;
+            color: white;
+        }
+        .popup-btn.cancel {
+            background: #e74c3c;
+            color: white;
+        }
+        .popup-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* Feature Highlights */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .feature {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-area">
+        <h1>📝 Text Character Counter</h1>
+        <p class="subtitle">Free Online Tool - Count Characters, Words, Sentences & Paragraphs Instantly</p>
+        
+        <textarea id="textInput" placeholder="🚀 Start typing or paste your text here... Our smart counter will update in real-time!"></textarea>
+        
+        <div class="quick-stats">
+            <h3>📊 Live Text Analysis</h3>
+            <p>Get instant insights into your writing</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <h3>🔤 Characters</h3>
+                <span id="charCount" class="count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>📝 Words</h3>
+                <span id="wordCount" class="count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>💬 Sentences</h3>
+                <span id="sentenceCount" class="count">0</span>
+            </div>
+            <div class="stat-box">
+                <h3>📑 Paragraphs</h3>
+                <span id="paragraphCount" class="count">0</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h4>💾 Auto Save</h4>
+                <p>Your work is automatically saved</p>
+            </div>
+            <div class="feature">
+                <h4>⚡ Real-time</h4>
+                <p>Instant updates as you type</p>
+            </div>
+            <div class="feature">
+                <h4>🔒 Privacy</h4>
+                <p>Your text never leaves your browser</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="saveText()">
+                💾 SAVE TEXT
+            </button>
+            <button class="btn btn-success" onclick="loadText()">
+                📂 LOAD SAVED
+            </button>
+            <button class="btn btn-warning" onclick="clearText()">
+                🗑️ CLEAR TEXT
+            </button>
+            <button class="btn btn-danger" onclick="showResetPopup()">
+                🔄 RESET ALL
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <p>✨ <strong>Free Online Character Counter</strong> - Perfect for writers, students, and professionals ✨</p>
+        <p>💡 <em>Tip: Use our tool to optimize your writing for social media, emails, and documents!</em></p>
+    </footer>
+
+    <!-- Popup Notifications -->
+    <div class="popup-overlay" id="savePopup">
+        <div class="popup">
+            <h3>✅ Text Saved Successfully!</h3>
+            <p>Your text has been saved to your browser's local storage. You can load it anytime.</p>
+            <div class="popup-buttons">
+                <button class="popup-btn confirm" onclick="hidePopup('savePopup')">OK, GOT IT</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="loadPopup">
+        <div class="popup">
+            <h3>📂 Load Saved Text?</h3>
+            <p>This will replace your current text with the previously saved version.</p>
+            <div class="popup-buttons">
+                <button class="popup-btn confirm" onclick="confirmLoad()">YES, LOAD IT</button>
+                <button class="popup-btn cancel" onclick="hidePopup('loadPopup')">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="clearPopup">
+        <div class="popup">
+            <h3>🗑️ Clear Text Area?</h3>
+            <p>This will remove all text from the input area. Your saved text will remain safe.</p>
+            <div class="popup-buttons">
+                <button class="popup-btn confirm" onclick="confirmClear()">YES, CLEAR IT</button>
+                <button class="popup-btn cancel" onclick="hidePopup('clearPopup')">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="resetPopup">
+        <div class="popup">
+            <h3>🔄 Reset Everything?</h3>
+            <p>This will clear the text area AND delete all saved data. This action cannot be undone!</p>
+            <div class="popup-buttons">
+                <button class="popup-btn confirm" onclick="confirmReset()">YES, RESET ALL</button>
+                <button class="popup-btn cancel" onclick="hidePopup('resetPopup')">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+        const sentenceCount = document.getElementById('sentenceCount');
+        const paragraphCount = document.getElementById('paragraphCount');
+
+        // Real-time character counting
+        textInput.addEventListener('input', function() {
+            const text = textInput.value;
+            
+            charCount.textContent = text.length;
+            
+            const words = text.trim().split(/\s+/);
+            wordCount.textContent = text.trim() === '' ? 0 : words.length;
+            
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            sentenceCount.textContent = sentences.length;
+            
+            const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+            paragraphCount.textContent = paragraphs.length;
+        });
+
+        // Popup functions
+        function showPopup(popupId) {
+            document.getElementById(popupId).style.display = 'flex';
+        }
+
+        function hidePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+
+        // Save text function
+        function saveText() {
+            const text = document.getElementById('textInput').value;
+            if (text.trim() === '') {
+                alert('⚠️ Please enter some text before saving!');
+                return;
+            }
+            localStorage.setItem('savedText', text);
+            showPopup('savePopup');
+        }
+
+        // Load text function with confirmation
+        function loadText() {
+            const saved = localStorage.getItem('savedText');
+            if (!saved) {
+                alert('📭 No saved text found! Save some text first.');
+                return;
+            }
+            showPopup('loadPopup');
+        }
+
+        function confirmLoad() {
+            const saved = localStorage.getItem('savedText');
+            document.getElementById('textInput').value = saved;
+            document.getElementById('textInput').dispatchEvent(new Event('input'));
+            hidePopup('loadPopup');
+            
+            // Show success message
+            setTimeout(() => {
+                alert('✅ Text loaded successfully!');
+            }, 300);
+        }
+
+        // Clear text function with confirmation
+        function clearText() {
+            if (textInput.value.trim() === '') {
+                alert('📝 Text area is already empty!');
+                return;
+            }
+            showPopup('clearPopup');
+        }
+
+        function confirmClear() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('textInput').dispatchEvent(new Event('input'));
+            hidePopup('clearPopup');
+            
+            setTimeout(() => {
+                alert('✅ Text area cleared!');
+            }, 300);
+        }
+
+        // Reset everything function
+        function showResetPopup() {
+            const hasSavedText = localStorage.getItem('savedText');
+            const hasCurrentText = textInput.value.trim() !== '';
+            
+            if (!hasSavedText && !hasCurrentText) {
+                alert('ℹ️ Nothing to reset! Both text area and saved data are already empty.');
+                return;
+            }
+            
+            showPopup('resetPopup');
+        }
+
+        function confirmReset() {
+            // Clear text area
+            document.getElementById('textInput').value = '';
+            document.getElementById('textInput').dispatchEvent(new Event('input'));
+            
+            // Clear saved data
+            localStorage.removeItem('savedText');
+            
+            hidePopup('resetPopup');
+            
+            setTimeout(() => {
+                alert('✅ Everything has been reset successfully!');
+            }, 300);
+        }
+
+        // Auto-load saved text when page loads
+        window.addEventListener('load', function() {
+            const saved = localStorage.getItem('savedText');
+            if (saved) {
+                // Auto-load after 1 second delay
+                setTimeout(() => {
+                    if (confirm('📂 Found previously saved text! Would you like to load it now?')) {
+                        document.getElementById('textInput').value = saved;
+                        document.getElementById('textInput').dispatchEvent(new Event('input'));
+                    }
+                }, 1000);
+            }
+        });
+
+        // Auto-save text every 30 seconds
+        setInterval(() => {
+            const text = document.getElementById('textInput').value;
+            if (text.trim() !== '') {
+                localStorage.setItem('savedText', text);
+                // Show auto-save indicator
+                const btn = document.querySelector('.btn-primary');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '💾 AUTO SAVED!';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 1000);
+            }
+        }, 30000);
+    </script>
+
+    <!-- PropellerAds Code -->
+    <script type="text/javascript">
+        (function(d, z, s) {
+            s = d.createElement('script'); 
+            s.src = 'https://'+z+'/4013956'; 
+            s.type = 'text/javascript'; 
+            d.getElementsByTagName('head')[0].appendChild(s);
+        }(document, 'propellerads.com'));
+    </script>
+</body>
+</html>
