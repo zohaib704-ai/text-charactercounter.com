@@ -52,6 +52,57 @@
     </script>
     
     <style>
+        <script>
+const textInput = document.getElementById('textInput');
+const charCount = document.getElementById('charCount');
+const wordCount = document.getElementById('wordCount');
+const sentenceCount = document.getElementById('sentenceCount');
+const paragraphCount = document.getElementById('paragraphCount');
+
+textInput.addEventListener('input', function() {
+    const text = textInput.value;
+    charCount.textContent = text.length;
+    const words = text.trim().split(/\s+/);
+    wordCount.textContent = text.trim() === '' ? 0 : words.length;
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    sentenceCount.textContent = sentences.length;
+    const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+    paragraphCount.textContent = paragraphs.length;
+});
+
+function saveText() {
+    const text = textInput.value;
+    if (text.trim() === '') {
+        alert('Please enter some text before saving!');
+        return;
+    }
+    localStorage.setItem('savedText', text);
+    alert('Text saved!');
+}
+
+function loadText() {
+    const saved = localStorage.getItem('savedText');
+    if (!saved) {
+        alert('No saved text found!');
+        return;
+    }
+    textInput.value = saved;
+    textInput.dispatchEvent(new Event('input'));
+}
+
+function clearText() {
+    textInput.value = '';
+    textInput.dispatchEvent(new Event('input'));
+}
+
+function showResetPopup() {
+    if (confirm('Reset everything?')) {
+        textInput.value = '';
+        localStorage.removeItem('savedText');
+        textInput.dispatchEvent(new Event('input'));
+    }
+}
+</script>
         /* RESET & BASE STYLES */
         * {
             margin: 0;
@@ -773,5 +824,57 @@
             d.getElementsByTagName('head')[0].appendChild(s);
         }(document, 'propellerads.com'));
     </script>
+    <script>
+const textInput = document.getElementById('textInput');
+const charCount = document.getElementById('charCount');
+const wordCount = document.getElementById('wordCount');
+const sentenceCount = document.getElementById('sentenceCount');
+const paragraphCount = document.getElementById('paragraphCount');
+
+textInput.addEventListener('input', function() {
+    const text = textInput.value;
+    charCount.textContent = text.length;
+    const words = text.trim().split(/\s+/);
+    wordCount.textContent = text.trim() === '' ? 0 : words.length;
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    sentenceCount.textContent = sentences.length;
+    const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
+    paragraphCount.textContent = paragraphs.length;
+});
+
+function saveText() {
+    const text = textInput.value;
+    if (text.trim() === '') {
+        alert('Please enter some text before saving!');
+        return;
+    }
+    localStorage.setItem('savedText', text);
+    alert('Text saved!');
+}
+
+function loadText() {
+    const saved = localStorage.getItem('savedText');
+    if (!saved) {
+        alert('No saved text found!');
+        return;
+    }
+    textInput.value = saved;
+    textInput.dispatchEvent(new Event('input'));
+}
+
+function clearText() {
+    textInput.value = '';
+    textInput.dispatchEvent(new Event('input'));
+}
+
+function showResetPopup() {
+    if (confirm('Reset everything?')) {
+        textInput.value = '';
+        localStorage.removeItem('savedText');
+        textInput.dispatchEvent(new Event('input'));
+    }
+}
+</script>
 </body>
 </html>
+
