@@ -3,453 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free Text Character Counter - Count characters, words, sentences instantly">
-    <title>Text Character Counter - Free Online Tool</title>
     
-    <!-- FAVICON -->
+    <!-- CLEAN SEO TAGS - NO ADS -->
+    <title>Character Counter - Free Online Text & Word Counter Tool</title>
+    <meta name="description" content="Free online character counter tool. Count characters, words, sentences, and paragraphs instantly. No ads, no tracking, completely private.">
+    
+    <!-- CLEAN FAVICON -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
-    <!-- Add this in your <head> section -->
-<script type="text/javascript">
-    (function(d, z, s) {
-        s = d.createElement('script'); 
-        s.src = 'https://'+z+'/4013956'; 
-        s.type = 'text/javascript'; 
-        d.getElementsByTagName('head')[0].appendChild(s);
-    }(document, 'propellerads.com'));
-</script>
-    <script>(function(s){s.dataset.zone='10069728',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-    <!-- GOOGLE ANALYTICS - REPLACE G-XXXXXXXXXX WITH YOUR ACTUAL ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
-    </script>
     
     <style>
+        /* === CLEAN CSS - NO AD STYLES === */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            color: #2c3e50;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            padding: 15px;
         }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Header */
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            padding: 20px 0;
         }
+        
         .logo {
-            font-size: 3em;
-            font-weight: bold;
+            font-size: 2.5em;
+            font-weight: 800;
             color: white;
+            margin-bottom: 8px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
         }
+        
         .logo-subtitle {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.1em;
-            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1em;
+            font-weight: 400;
         }
+        
+        /* Main Tool */
         .tool-area {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
         }
-        h1 {
+        
+        .main-title {
             color: #2c3e50;
             text-align: center;
             margin-bottom: 10px;
-            font-size: 2.2em;
+            font-size: 1.8em;
+            font-weight: 700;
         }
+        
         .subtitle {
             text-align: center;
             color: #7f8c8d;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.5;
         }
+        
+        /* Text Area */
         textarea {
             width: 100%;
-            height: 250px;
+            height: 200px;
             padding: 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
             font-size: 16px;
+            font-family: inherit;
             resize: vertical;
             margin-bottom: 20px;
-            transition: border-color 0.3s;
-            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            transition: border-color 0.3s ease;
         }
+        
         textarea:focus {
             border-color: #3498db;
             outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
-        .stats {
+        
+        /* Stats */
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin: 25px 0;
         }
-        .stat-box {
+        
+        .stat-card {
             background: #f8f9fa;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
             border-left: 4px solid #3498db;
-            transition: transform 0.2s;
+            transition: transform 0.2s ease;
         }
-        .stat-box:hover {
+        
+        .stat-card:hover {
             transform: translateY(-2px);
         }
-        .action-buttons {
+        
+        .stat-card h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #3498db;
+        }
+        
+        /* Buttons */
+        .action-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin: 25px 0;
         }
+        
         .btn {
-            padding: 12px 20px;
+            padding: 14px 12px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-        }
-        .btn-success {
-            background: linear-gradient(135deg, #27ae60, #229954);
-            color: white;
-        }
-        .btn-warning {
-            background: linear-gradient(135deg, #e67e22, #d35400);
-            color: white;
-        }
-        .btn-danger {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+        
+        .btn-primary { background: #3498db; color: white; }
+        .btn-success { background: #27ae60; color: white; }
+        .btn-warning { background: #e67e22; color: white; }
+        .btn-danger { background: #e74c3c; color: white; }
+        
         .btn:active {
-            transform: translateY(0);
+            transform: scale(0.98);
         }
-        footer {
+        
+        /* Features */
+        .features-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .feature-icon {
+            font-size: 2.2em;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .feature-card p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        /* Footer */
+        .footer {
             text-align: center;
             margin-top: 40px;
             padding: 25px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 10px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 12px;
             color: #2c3e50;
         }
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        
+        .footer p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
         }
-        .popup {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
+        
+        /* Mobile Responsive */
+        @media (min-width: 768px) {
+            body { padding: 30px; }
+            .container { max-width: 700px; }
+            .logo { font-size: 3.2em; }
+            .main-title { font-size: 2.2em; }
+            .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 15px; }
+            .action-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+            .btn { padding: 15px; font-size: 15px; }
+            .features-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            textarea { height: 250px; }
         }
-        .popup h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        .popup p {
-            margin-bottom: 25px;
-            color: #7f8c8d;
-        }
-        .popup-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        .popup-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        .popup-btn.confirm {
-            background: #27ae60;
-            color: white;
-        }
-        .popup-btn.cancel {
-            background: #e74c3c;
-            color: white;
-        }
-        .popup-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-        .quick-stats {
-            background: #34495e;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-        .feature {
-            background: #ecf0f1;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+        
+        @media (max-width: 480px) {
+            .logo { font-size: 2em; }
+            .tool-area { padding: 20px; }
+            .main-title { font-size: 1.5em; }
+            textarea { height: 180px; padding: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">📝 TextTools</div>
-        <div class="logo-subtitle">Free Online Text Utilities</div>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo">📝 TextTools</div>
+            <div class="logo-subtitle">Free Online Text Utilities</div>
+        </header>
+
+        <!-- MAIN TOOL -->
+        <main class="tool-area">
+            <h1 class="main-title">Character Counter</h1>
+            <p class="subtitle">Count characters, words, sentences & paragraphs in real-time</p>
+            
+            <!-- TEXT AREA -->
+            <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Characters</h3>
+                    <span id="charCount" class="stat-number">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Words</h3>
+                    <span id="wordCount" class="stat-number">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Sentences</h3>
+                    <span id="sentenceCount" class="stat-number">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Paragraphs</h3>
+                    <span id="paragraphCount" class="stat-number">0</span>
+                </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="action-grid">
+                <button class="btn btn-primary" onclick="saveText()">
+                    <span>💾</span> Save
+                </button>
+                <button class="btn btn-success" onclick="loadText()">
+                    <span>📂</span> Load
+                </button>
+                <button class="btn btn-warning" onclick="clearText()">
+                    <span>🗑️</span> Clear
+                </button>
+                <button class="btn btn-danger" onclick="showResetPopup()">
+                    <span>🔄</span> Reset
+                </button>
+            </div>
+
+            <!-- FEATURES -->
+            <section class="features-section">
+                <h2 class="section-title">Why Use Our Tool?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Real-time</h3>
+                        <p>Instant updates as you type</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💾</span>
+                        <h3>Auto Save</h3>
+                        <p>Your work is saved automatically</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔒</span>
+                        <h3>100% Private</h3>
+                        <p>No ads, no tracking, completely private</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p><strong>TextTools</strong> - Free Character Counter</p>
+            <p>No ads • No tracking • Completely free</p>
+        </footer>
     </div>
 
-    <div class="tool-area">
-        <h1>Text Character Counter</h1>
-        <p class="subtitle">Count Characters, Words, Sentences & Paragraphs Instantly</p>
-        
-        <textarea id="textInput" placeholder="🚀 Start typing or paste your text here... Our smart counter will update in real-time!"></textarea>
-        
-        <div class="quick-stats">
-            <h3>📊 Live Text Analysis</h3>
-            <p>Get instant insights into your writing</p>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-box">
-                <h3>🔤 Characters</h3>
-                <span id="charCount" class="count">0</span>
-            </div>
-            <div class="stat-box">
-                <h3>📝 Words</h3>
-                <span id="wordCount" class="count">0</span>
-            </div>
-            <div class="stat-box">
-                <h3>💬 Sentences</h3>
-                <span id="sentenceCount" class="count">0</span>
-            </div>
-            <div class="stat-box">
-                <h3>📑 Paragraphs</h3>
-                <span id="paragraphCount" class="count">0</span>
-            </div>
-        </div>
-
-        <div class="features">
-            <div class="feature">
-                <h4>💾 Auto Save</h4>
-                <p>Your work is automatically saved</p>
-            </div>
-            <div class="feature">
-                <h4>⚡ Real-time</h4>
-                <p>Instant updates as you type</p>
-            </div>
-            <div class="feature">
-                <h4>🔒 Privacy</h4>
-                <p>Your text never leaves your browser</p>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button class="btn btn-primary" onclick="saveText()">💾 SAVE TEXT</button>
-            <button class="btn btn-success" onclick="loadText()">📂 LOAD SAVED</button>
-            <button class="btn btn-warning" onclick="clearText()">🗑️ CLEAR TEXT</button>
-            <button class="btn btn-danger" onclick="showResetPopup()">🔄 RESET ALL</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>✨ <strong>TextTools</strong> - Free Online Character Counter ✨</p>
-        <p>💡 <em>Perfect for writers, students, and professionals!</em></p>
-    </footer>
-
-    <div class="popup-overlay" id="savePopup">
-        <div class="popup">
-            <h3>✅ Text Saved Successfully!</h3>
-            <p>Your text has been saved to your browser's local storage.</p>
-            <div class="popup-buttons">
-                <button class="popup-btn confirm" onclick="hidePopup('savePopup')">OK, GOT IT</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup-overlay" id="loadPopup">
-        <div class="popup">
-            <h3>📂 Load Saved Text?</h3>
-            <p>This will replace your current text with the previously saved version.</p>
-            <div class="popup-buttons">
-                <button class="popup-btn confirm" onclick="confirmLoad()">YES, LOAD IT</button>
-                <button class="popup-btn cancel" onclick="hidePopup('loadPopup')">CANCEL</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup-overlay" id="clearPopup">
-        <div class="popup">
-            <h3>🗑️ Clear Text Area?</h3>
-            <p>This will remove all text from the input area.</p>
-            <div class="popup-buttons">
-                <button class="popup-btn confirm" onclick="confirmClear()">YES, CLEAR IT</button>
-                <button class="popup-btn cancel" onclick="hidePopup('clearPopup')">CANCEL</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup-overlay" id="resetPopup">
-        <div class="popup">
-            <h3>🔄 Reset Everything?</h3>
-            <p>This will clear the text area AND delete all saved data.</p>
-            <div class="popup-buttons">
-                <button class="popup-btn confirm" onclick="confirmReset()">YES, RESET ALL</button>
-                <button class="popup-btn cancel" onclick="hidePopup('resetPopup')">CANCEL</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- CLEAN JAVASCRIPT - NO AD CODE -->
     <script>
+        // DOM Elements
         const textInput = document.getElementById('textInput');
         const charCount = document.getElementById('charCount');
         const wordCount = document.getElementById('wordCount');
         const sentenceCount = document.getElementById('sentenceCount');
         const paragraphCount = document.getElementById('paragraphCount');
 
+        // Real-time Counting
         textInput.addEventListener('input', function() {
             const text = textInput.value;
+            
+            // Character count
             charCount.textContent = text.length;
+            
+            // Word count
             const words = text.trim().split(/\s+/);
             wordCount.textContent = text.trim() === '' ? 0 : words.length;
+            
+            // Sentence count
             const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
             sentenceCount.textContent = sentences.length;
+            
+            // Paragraph count
             const paragraphs = text.split(/\n+/).filter(p => p.trim().length > 0);
             paragraphCount.textContent = paragraphs.length;
         });
 
-        function showPopup(popupId) {
-            document.getElementById(popupId).style.display = 'flex';
-        }
-        function hidePopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
-        }
+        // Save Text
         function saveText() {
             const text = document.getElementById('textInput').value;
             if (text.trim() === '') {
-                alert('⚠️ Please enter some text before saving!');
+                alert('Please enter some text before saving!');
                 return;
             }
             localStorage.setItem('savedText', text);
-            showPopup('savePopup');
+            alert('Text saved successfully!');
         }
+
+        // Load Text
         function loadText() {
             const saved = localStorage.getItem('savedText');
             if (!saved) {
-                alert('📭 No saved text found! Save some text first.');
+                alert('No saved text found!');
                 return;
             }
-            showPopup('loadPopup');
+            textInput.value = saved;
+            textInput.dispatchEvent(new Event('input'));
         }
-        function confirmLoad() {
-            const saved = localStorage.getItem('savedText');
-            document.getElementById('textInput').value = saved;
-            document.getElementById('textInput').dispatchEvent(new Event('input'));
-            hidePopup('loadPopup');
-            setTimeout(() => { alert('✅ Text loaded successfully!'); }, 300);
-        }
+
+        // Clear Text
         function clearText() {
-            if (textInput.value.trim() === '') {
-                alert('📝 Text area is already empty!');
-                return;
-            }
-            showPopup('clearPopup');
+            textInput.value = '';
+            textInput.dispatchEvent(new Event('input'));
         }
-        function confirmClear() {
-            document.getElementById('textInput').value = '';
-            document.getElementById('textInput').dispatchEvent(new Event('input'));
-            hidePopup('clearPopup');
-            setTimeout(() => { alert('✅ Text area cleared!'); }, 300);
-        }
+
+        // Reset All
         function showResetPopup() {
-            const hasSavedText = localStorage.getItem('savedText');
-            const hasCurrentText = textInput.value.trim() !== '';
-            if (!hasSavedText && !hasCurrentText) {
-                alert('ℹ️ Nothing to reset! Both text area and saved data are already empty.');
-                return;
+            if (confirm('Reset everything? This will clear text and delete saved data.')) {
+                textInput.value = '';
+                localStorage.removeItem('savedText');
+                textInput.dispatchEvent(new Event('input'));
             }
-            showPopup('resetPopup');
         }
-        function confirmReset() {
-            document.getElementById('textInput').value = '';
-            document.getElementById('textInput').dispatchEvent(new Event('input'));
-            localStorage.removeItem('savedText');
-            hidePopup('resetPopup');
-            setTimeout(() => { alert('✅ Everything has been reset successfully!'); }, 300);
-        }
+
+        // Auto-load saved text
         window.addEventListener('load', function() {
             const saved = localStorage.getItem('savedText');
             if (saved) {
                 setTimeout(() => {
-                    if (confirm('📂 Found previously saved text! Would you like to load it now?')) {
-                        document.getElementById('textInput').value = saved;
-                        document.getElementById('textInput').dispatchEvent(new Event('input'));
+                    if (confirm('Found saved text! Load it?')) {
+                        textInput.value = saved;
+                        textInput.dispatchEvent(new Event('input'));
                     }
                 }, 1000);
             }
         });
+
+        // Auto-save every 30 seconds
         setInterval(() => {
             const text = document.getElementById('textInput').value;
             if (text.trim() !== '') {
                 localStorage.setItem('savedText', text);
-                const btn = document.querySelector('.btn-primary');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '💾 AUTO SAVED!';
-                setTimeout(() => { btn.innerHTML = originalText; }, 1000);
             }
         }, 30000);
     </script>
-
-    <script type="text/javascript">
-        (function(d, z, s) {
-            s = d.createElement('script'); 
-            s.src = 'https://'+z+'/4013956'; 
-            s.type = 'text/javascript'; 
-            d.getElementsByTagName('head')[0].appendChild(s);
-        }(document, 'propellerads.com'));
-    </script>
 </body>
 </html>
-
-
